@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAWZ.MEDIA — The Bridge Between China and the World</title>
+<meta name="description" content="RAWZ.MEDIA is a cross-cultural marketing agency. We help Chinese brands go global and global brands enter China — understood, trusted, and relevant.">
+<link rel="icon" href="rawz_icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0C; --surface:#15151B; --surface2:#1E1E26;
+  --magenta:#E9019B; --magenta-deep:#B80179;
+  --white:#FFFFFF; --muted:#8B8B96; --hair:#2A2A33;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--white);font-family:'Inter','Noto Sans SC',sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body.zh{font-family:'Noto Sans SC','Inter',sans-serif;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+.disp{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em;}
+body.zh .disp{font-family:'Noto Sans SC',sans-serif;font-weight:700;letter-spacing:.02em;text-transform:none;}
+.mag{color:var(--magenta);}
+.kicker{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--magenta);font-weight:600;}
+body.zh .kicker{letter-spacing:.25em;}
+
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(10,10,12,.72);border-bottom:1px solid var(--hair);}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-weight:300;letter-spacing:.22em;font-size:22px;font-family:'Inter',sans-serif;}
+.logo .dot{color:var(--magenta);}
+.navlinks{display:flex;gap:32px;align-items:center;font-size:14px;}
+.navlinks a{color:var(--muted);transition:color .2s;}
+.navlinks a:hover{color:var(--white);}
+.actions{display:flex;align-items:center;gap:16px;}
+.lang{display:flex;border:1px solid var(--hair);border-radius:999px;overflow:hidden;font-size:12px;letter-spacing:.08em;}
+.lang button{background:none;border:none;color:var(--muted);padding:7px 13px;cursor:pointer;font-family:inherit;transition:.2s;}
+.lang button.on{background:var(--magenta);color:#fff;}
+.btn{background:var(--magenta);color:#fff;padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;transition:.2s;border:none;cursor:pointer;font-family:inherit;}
+.btn:hover{background:var(--magenta-deep);transform:translateY(-1px);}
+
+/* hero — full-bleed, integrated */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.55);}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:
+   radial-gradient(1100px 700px at 78% 30%, rgba(233,1,155,.30), rgba(233,1,155,0) 60%),
+   linear-gradient(90deg, var(--ink) 32%, rgba(10,10,12,.78) 60%, rgba(10,10,12,.55) 100%),
+   linear-gradient(0deg, var(--ink), rgba(10,10,12,0) 38%);}
+.hero .wrap{position:relative;z-index:1;width:100%;}
+.hero h1{font-size:clamp(44px,8.2vw,108px);max-width:15ch;}
+.hero p{color:#cfcfd6;font-size:clamp(17px,2vw,21px);max-width:52ch;margin:26px 0 36px;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.ghost{border:1px solid rgba(255,255,255,.35);color:var(--white);background:rgba(10,10,12,.25);padding:11px 22px;border-radius:999px;
+  font-size:14px;cursor:pointer;font-family:inherit;transition:.2s;}
+.ghost:hover{border-color:var(--magenta);}
+
+section{padding:96px 0;}
+.sec-head{margin-bottom:50px;}
+.sec-head h2{font-size:clamp(30px,4.5vw,50px);margin-top:14px;}
+.sec-head p{color:var(--muted);max-width:64ch;margin-top:16px;font-size:16px;}
+
+/* who we help */
+#who{border-top:1px solid var(--hair);}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.who{background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:42px 38px;position:relative;transition:.25s;}
+.who:hover{border-color:var(--magenta);}
+.who .dir{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:.2em;color:var(--magenta);text-transform:uppercase;}
+body.zh .who .dir{font-family:'Inter',sans-serif;font-weight:700;}
+.who h3{font-size:26px;margin:14px 0 12px;}
+.who p{color:var(--muted);font-size:15.5px;}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc{background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:38px 32px;transition:.25s;display:flex;flex-direction:column;}
+.svc:hover{border-color:var(--magenta);transform:translateY(-4px);}
+.svc .num{font-family:'Anton',sans-serif;font-size:15px;color:var(--magenta);letter-spacing:.1em;}
+body.zh .svc .num{font-family:'Inter',sans-serif;font-weight:700;}
+.svc h3{font-size:23px;margin:16px 0 6px;}
+.svc .tl{color:var(--white);font-weight:500;font-size:15px;margin-bottom:12px;}
+.svc p{color:var(--muted);font-size:14.5px;flex:1;}
+.svc .lk{margin-top:22px;font-size:13px;color:var(--magenta);font-weight:600;letter-spacing:.04em;display:inline-block;transition:.2s;}
+.svc .lk:hover{transform:translateX(3px);}
+
+/* industry experience — color-block image tiles */
+#industry{border-top:1px solid var(--hair);}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.ind{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--hair);
+  background:linear-gradient(160deg,#241226,#0e0e13);}
+.ind img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.05) brightness(.62);transition:.4s;}
+.ind:hover img{filter:grayscale(.2) contrast(1.05) brightness(.72);transform:scale(1.05);}
+.ind::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(233,1,155,.10),rgba(10,10,12,.85));}
+.ind .lab{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;}
+.ind .lab .n{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--magenta);}
+body.zh .ind .lab .n{font-family:'Inter',sans-serif;font-weight:700;}
+.ind .lab .t{font-size:17px;font-weight:600;margin-top:4px;}
+
+/* cross-market map */
+#markets{border-top:1px solid var(--hair);background:linear-gradient(180deg,var(--ink),#0d0d12);}
+.map-wrap{position:relative;margin-top:34px;border:1px solid var(--hair);border-radius:20px;
+  background:radial-gradient(900px 420px at 60% 30%,rgba(233,1,155,.10),rgba(10,10,12,0) 60%),#101016;padding:24px;}
+.map-wrap svg{width:100%;height:auto;display:block;}
+.pin circle.dot{fill:var(--magenta);transition:.25s;}
+.pin circle.halo{fill:var(--magenta);opacity:.18;transition:.25s;}
+.pin text{fill:var(--muted);font-family:'Inter',sans-serif;font-size:15px;font-weight:500;transition:.25s;}
+.pin{cursor:default;}
+.pin:hover circle.dot{r:8;}
+.pin:hover circle.halo{r:26;opacity:.32;}
+.pin:hover text{fill:#fff;}
+.route{fill:none;stroke:var(--magenta);stroke-width:1.2;stroke-dasharray:5 6;opacity:.5;}
+.route.faint{stroke:#3a3a44;stroke-dasharray:3 6;opacity:.7;}
+.market-list{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:24px;}
+.market-list .m{border:1px solid var(--hair);border-radius:999px;padding:8px 16px;font-size:13.5px;}
+
+/* cases */
+#work{background:linear-gradient(180deg,#0d0d12,var(--ink));}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.case{background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:34px;position:relative;overflow:hidden;transition:.25s;}
+.case:hover{border-color:var(--magenta);}
+.case .badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.case .badge{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);font-weight:600;border:1px solid var(--hair);border-radius:999px;padding:5px 11px;}
+.case h3{font-size:22px;margin:0 0 4px;line-height:1.25;}
+.case .sub{color:var(--magenta);font-size:13px;font-weight:600;letter-spacing:.02em;margin-bottom:12px;}
+.case p{color:var(--muted);font-size:14.5px;}
+.case .metric{margin-top:22px;display:flex;gap:30px;flex-wrap:wrap;}
+.case .metric b{font-family:'Anton',sans-serif;font-size:24px;color:#fff;display:block;letter-spacing:.01em;}
+body.zh .case .metric b{font-family:'Inter',sans-serif;font-weight:700;}
+.case .metric span{font-size:12px;color:var(--muted);}
+
+/* insights */
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.ins{background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:30px;transition:.25s;}
+.ins:hover{border-color:var(--magenta);}
+.ins .cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--magenta);font-weight:600;}
+.ins h3{font-size:18px;margin:12px 0 8px;line-height:1.35;}
+.ins p{color:var(--muted);font-size:14px;}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr;gap:60px;align-items:start;}
+.about p{color:var(--muted);margin-bottom:18px;font-size:16px;}
+.about .channels-h{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.18em;color:var(--magenta);text-transform:uppercase;margin:28px 0 10px;}
+body.zh .about .channels-h{font-family:'Inter',sans-serif;font-weight:700;}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.chip{border:1px solid var(--hair);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--white);}
+
+/* cta band */
+.band{background:var(--magenta);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden;}
+.band h2{font-size:clamp(28px,4vw,46px);color:#fff;}
+.band p{color:rgba(255,255,255,.88);margin:14px auto 28px;max-width:48ch;font-size:16px;}
+.band .btn{background:#fff;color:var(--magenta);}
+.band .btn:hover{background:var(--ink);color:#fff;}
+
+footer{border-top:1px solid var(--hair);padding:50px 0 40px;}
+.foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.foot-grid .muted{color:var(--muted);font-size:13px;}
+
+@media(max-width:860px){
+  .navlinks{display:none;}
+  .svc-grid,.case-grid,.ins-grid,.who-grid{grid-template-columns:1fr;}
+  .ind-grid{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr;gap:36px;}
+  section{padding:64px 0;}
+  .band{padding:42px 26px;}
+  .hero{min-height:auto;padding:130px 0 70px;}
+}
+[data-zh]{display:none;}
+body.zh [data-en]{display:none;}
+body.zh [data-zh]{display:inline;}
+body.zh [data-zh].block{display:block;}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">RAWZ<span class="dot">.</span></a>
+      <div class="navlinks">
+        <a href="#services"><span data-en>Services</span><span data-zh>服务</span></a>
+        <a href="#work"><span data-en>Work</span><span data-zh>案例</span></a>
+        <a href="#insights"><span data-en>Insights</span><span data-zh>洞察</span></a>
+        <a href="#about"><span data-en>About</span><span data-zh>关于</span></a>
+        <a href="#contact"><span data-en>Contact</span><span data-zh>联系</span></a>
+      </div>
+      <div class="actions">
+        <div class="lang">
+          <button id="en-btn" class="on" onclick="setLang('en')">EN</button>
+          <button id="zh-btn" onclick="setLang('zh')">中文</button>
+        </div>
+        <a href="#contact" class="btn"><span data-en>Book a Call</span><span data-zh>预约通话</span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
+         alt="" onerror="this.style.display='none'">
+  </div>
+  <div class="wrap">
+    <div class="kicker"><span data-en>Cross-Cultural Marketing</span><span data-zh>跨文化营销</span></div>
+    <h1 class="disp" style="margin-top:22px;">
+      <span data-en>The Bridge Between <span class="mag">China and the World</span></span>
+      <span data-zh class="block">连接<span class="mag">中国与世界</span>的桥梁</span>
+    </h1>
+    <p>
+      <span data-en>RAWZ.MEDIA helps Chinese brands go global and global brands enter China — understood, trusted, and relevant from day one.</span>
+      <span data-zh>RAWZ.MEDIA 帮助中国品牌走向世界，也帮助国际品牌进入中国——从第一天起，就被理解、被信任、与市场相关。</span>
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn"><span data-en>Book a Discovery Call</span><span data-zh>预约沟通</span> &rarr;</a>
+      <a href="#services" class="ghost"><span data-en>See How We Work</span><span data-zh>了解我们如何做</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE HELP -->
+<section id="who">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span data-en>Two Directions. One Expertise.</span><span data-zh>双向通行 · 同一专长</span></div>
+      <h2 class="disp"><span data-en>Who We Help</span><span data-zh class="block">我们服务谁</span></h2>
+    </div>
+    <div class="who-grid">
+      <div class="who">
+        <div class="dir"><span data-en>China &rarr; Global</span><span data-zh>中国 &rarr; 全球</span></div>
+        <h3><span data-en>Chinese brands going global</span><span data-zh>走向世界的中国品牌</span></h3>
+        <p><span data-en>Take your brand international without losing what makes it yours. We translate meaning, not just words — so you're understood, not just heard.</span>
+           <span data-zh>让品牌走向国际，又不丢失自身特色。我们传递的是意义，而非字面翻译——让你被真正理解，而不只是被听到。</span></p>
+      </div>
+      <div class="who">
+        <div class="dir"><span data-en>Global &rarr; China</span><span data-zh>全球 &rarr; 中国</span></div>
+        <h3><span data-en>Global brands entering China</span><span data-zh>进入中国的国际品牌</span></h3>
+        <p><span data-en>Land in China understood and trusted, with positioning built for how Chinese consumers actually think, feel, and buy.</span>
+           <span data-zh>以被理解、被信任的姿态进入中国，基于中国消费者真实的思考、情感与购买方式构建品牌定位。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span data-en>What We Do</span><span data-zh>我们的服务</span></div>
+      <h2 class="disp"><span data-en>We Close the Gap Between Your Brand and a New Market</span><span data-zh class="block">弥合品牌与新市场之间的距离</span></h2>
+      <p><span data-en>From brand strategy and social media to content production and KOL partnerships — we make brands understood, trusted, and relevant where they aren&rsquo;t yet known.</span>
+         <span data-zh>从品牌策略、社媒运营，到内容制作与KOL合作——我们让品牌在尚未被熟知的市场里，被理解、被信任、变得相关。</span></p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <div class="num">01</div>
+        <h3><span data-en>Brand Audit</span><span data-zh>品牌诊断</span></h3>
+        <div class="tl"><span data-en>Find the gaps before the market does.</span><span data-zh>在市场发现之前，先发现差距。</span></div>
+        <p><span data-en>A clear-eyed assessment of how your brand is perceived — or misperceived — in a target market. We map the communication, positioning, and perception gaps that quietly cost you trust and sales.</span>
+           <span data-zh>清晰评估品牌在目标市场中如何被认知——或被误读。我们梳理那些悄悄消耗信任与销售的沟通、定位与认知差距。</span></p>
+        <a href="#contact" class="lk"><span data-en>Audit my brand &rarr;</span><span data-zh>诊断我的品牌 &rarr;</span></a>
+      </div>
+      <div class="svc">
+        <div class="num">02</div>
+        <h3><span data-en>Brand Localization</span><span data-zh>品牌本地化</span></h3>
+        <div class="tl"><span data-en>Sound native, not translated.</span><span data-zh>像本地品牌，而非翻译腔。</span></div>
+        <p><span data-en>We adapt your messaging, positioning, and communication so your brand feels local — not foreign, not literally translated. The brand stays itself; it just speaks the new market's language.</span>
+           <span data-zh>我们调整品牌的信息、定位与沟通方式，让品牌在当地显得自然——不生硬、不直译。品牌依然是自己，只是学会了用新市场的语言表达。</span></p>
+        <a href="#contact" class="lk"><span data-en>Localize my brand &rarr;</span><span data-zh>本地化我的品牌 &rarr;</span></a>
+      </div>
+      <div class="svc">
+        <div class="num">03</div>
+        <h3><span data-en>Market Entry Support</span><span data-zh>市场进入支持</span></h3>
+        <div class="tl"><span data-en>Land with a plan, not a guess.</span><span data-zh>带着策略落地，而非凭感觉试错。</span></div>
+        <p><span data-en>Hands-on support through the communication and marketing challenges of entering a new region — so your launch is informed, coordinated, and credible from the start.</span>
+           <span data-zh>在进入新市场的沟通与营销挑战中提供实战支持——让你的首发有依据、有协同、有可信度。</span></p>
+        <a href="#contact" class="lk"><span data-en>Plan my entry &rarr;</span><span data-zh>规划我的市场进入 &rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED INDUSTRY EXPERIENCE -->
+<section id="industry">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span data-en>Selected Industry Experience</span><span data-zh>精选行业经验</span></div>
+      <h2 class="disp"><span data-en>Where We&rsquo;ve Built Trust</span><span data-zh class="block">我们建立信任的领域</span></h2>
+    </div>
+    <div class="ind-grid">
+      <div class="ind">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'">
+        <div class="lab"><div class="n">01</div><div class="t"><span data-en>Luxury Retail</span><span data-zh>奢侈品零售</span></div></div>
+      </div>
+      <div class="ind">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'">
+        <div class="lab"><div class="n">02</div><div class="t"><span data-en>Automotive</span><span data-zh>汽车</span></div></div>
+      </div>
+      <div class="ind">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'">
+        <div class="lab"><div class="n">03</div><div class="t"><span data-en>Technology</span><span data-zh>科技</span></div></div>
+      </div>
+      <div class="ind">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'">
+        <div class="lab"><div class="n">04</div><div class="t"><span data-en>Lifestyle</span><span data-zh>生活方式</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-MARKET EXPERIENCE (map) -->
+<section id="markets">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span data-en>Cross-Market Experience</span><span data-zh>跨市场经验</span></div>
+      <h2 class="disp"><span data-en>One Team, Many Markets</span><span data-zh class="block">一支团队，多个市场</span></h2>
+      <p><span data-en>Projects delivered across East Asia, Southeast Asia, and Europe — bridging cultures on both ends of every brief.</span>
+         <span data-zh>项目交付横跨东亚、东南亚与欧洲——在每一次合作的两端之间，搭建文化桥梁。</span></p>
+    </div>
+
+    <div class="map-wrap">
+      <svg viewBox="0 0 1000 420" role="img" aria-label="Markets map">
+        <!-- bridge arcs from Italy (west) to East Asia cluster -->
+        <path class="route" d="M150 175 C 380 60, 560 70, 690 150" />
+        <path class="route faint" d="M690 150 L 712 130" />
+        <path class="route faint" d="M690 150 L 700 215" />
+        <path class="route faint" d="M700 215 L 745 205" />
+        <path class="route faint" d="M700 215 L 735 305" />
+
+        <!-- Italy -->
+        <g class="pin"><circle class="halo" cx="150" cy="175" r="16"/><circle class="dot" cx="150" cy="175" r="5.5"/>
+          <text x="150" y="205" text-anchor="middle"><tspan data-en>Italy</tspan><tspan data-zh>意大利</tspan></text></g>
+        <!-- Mainland China -->
+        <g class="pin"><circle class="halo" cx="690" cy="150" r="16"/><circle class="dot" cx="690" cy="150" r="5.5"/>
+          <text x="690" y="135" text-anchor="middle"><tspan data-en>Mainland China</tspan><tspan data-zh>中国大陆</tspan></text></g>
+        <!-- South Korea -->
+        <g class="pin"><circle class="halo" cx="712" cy="118" r="16"/><circle class="dot" cx="712" cy="118" r="5.5"/>
+          <text x="760" y="108" text-anchor="middle"><tspan data-en>South Korea</tspan><tspan data-zh>韩国</tspan></text></g>
+        <!-- Taiwan -->
+        <g class="pin"><circle class="halo" cx="745" cy="205" r="16"/><circle class="dot" cx="745" cy="205" r="5.5"/>
+          <text x="788" y="209" text-anchor="middle"><tspan data-en>Taiwan</tspan><tspan data-zh>台湾</tspan></text></g>
+        <!-- Hong Kong -->
+        <g class="pin"><circle class="halo" cx="700" cy="215" r="16"/><circle class="dot" cx="700" cy="215" r="5.5"/>
+          <text x="648" y="235" text-anchor="middle"><tspan data-en>Hong Kong</tspan><tspan data-zh>香港</tspan></text></g>
+        <!-- Indonesia -->
+        <g class="pin"><circle class="halo" cx="735" cy="305" r="16"/><circle class="dot" cx="735" cy="305" r="5.5"/>
+          <text x="735" y="335" text-anchor="middle"><tspan data-en>Indonesia</tspan><tspan data-zh>印度尼西亚</tspan></text></g>
+      </svg>
+    </div>
+
+    <div class="market-list">
+      <span class="m"><span data-en>Mainland China</span><span data-zh>中国大陆</span></span>
+      <span class="m"><span data-en>Hong Kong</span><span data-zh>香港</span></span>
+      <span class="m"><span data-en>Taiwan</span><span data-zh>台湾</span></span>
+      <span class="m"><span data-en>Indonesia</span><span data-zh>印度尼西亚</span></span>
+      <span class="m"><span data-en>South Korea</span><span data-zh>韩国</span></span>
+      <span class="m"><span data-en>Italy</span><span data-zh>意大利</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span data-en>Selected Work</span><span data-zh>精选案例</span></div>
+      <h2 class="disp"><span data-en>Brands We&rsquo;ve Helped Cross Borders</span><span data-zh class="block">我们助力跨越边界的品牌</span></h2>
+    </div>
+    <div class="case-grid">
+
+      <!-- 1: Luxury Fashion -->
+      <div class="case">
+        <div class="badges">
+          <span class="badge"><span data-en>Luxury Fashion</span><span data-zh>奢侈时尚</span></span>
+          <span class="badge"><span data-en>Global &rarr; China</span><span data-zh>全球 &rarr; 中国</span></span>
+        </div>
+        <h3><span data-en>Global Luxury Fashion Brand</span><span data-zh>全球奢侈时尚品牌</span></h3>
+        <div class="sub"><span data-en>Market Localization &amp; Social Media Transition</span><span data-zh>市场本地化与社媒交接</span></div>
+        <p><span data-en>We led the brand&rsquo;s social media strategy and content operations across China&rsquo;s key platforms — including a full account handover — rebuilding the local narrative and aligning a KOL matrix to deepen resonance with Chinese consumers, with zero publishing downtime.</span>
+           <span data-zh>我们主导该品牌在中国核心平台的社媒策略与内容运营——包括完整的账号交接——重塑本地叙事，搭配KOL矩阵深化与中国消费者的共鸣，且发布零中断。</span></p>
+        <div class="metric"><div><b>4</b><span data-en>Platforms migrated</span><span data-zh>平台无缝交接</span></div><div><b>0</b><span data-en>Publishing downtime</span><span data-zh>发布零中断</span></div></div>
+      </div>
+
+      <!-- 2: Premium Automotive -->
+      <div class="case">
+        <div class="badges">
+          <span class="badge"><span data-en>Automotive</span><span data-zh>汽车</span></span>
+          <span class="badge"><span data-en>Campaign &amp; Activation</span><span data-zh>整合传播与活动</span></span>
+        </div>
+        <h3><span data-en>Premium Automotive Brand</span><span data-zh>高端汽车品牌</span></h3>
+        <div class="sub"><span data-en>Campaign Communication &amp; Market Activation</span><span data-zh>整合传播与市场活动</span></div>
+        <p><span data-en>We managed social media and led campaign communication for a premium automotive marque in China — from a Mid-Autumn campaign and its social performance report to the brand&rsquo;s 70th-anniversary campaign, including an anniversary documentary and three character interview films.</span>
+           <span data-zh>我们为一家高端汽车品牌在中国负责社媒运营并主导整合传播——从中秋节 campaign 及其社媒反馈报告，到品牌70周年 campaign，包括品牌周年纪录片与三支人物采访片。</span></p>
+        <div class="metric"><div><b>70th</b><span data-en>Anniversary campaign</span><span data-zh>品牌周年 campaign</span></div><div><b>3</b><span data-en>Interview films</span><span data-zh>人物采访片</span></div></div>
+      </div>
+
+      <!-- 3: Premium Lifestyle -->
+      <div class="case">
+        <div class="badges">
+          <span class="badge"><span data-en>Luxury Footwear</span><span data-zh>奢侈鞋履</span></span>
+          <span class="badge"><span data-en>Retail Activation</span><span data-zh>零售活动</span></span>
+        </div>
+        <h3><span data-en>Premium Lifestyle Brand</span><span data-zh>高端生活方式品牌</span></h3>
+        <div class="sub"><span data-en>Creative Concept &amp; Flagship Activation</span><span data-zh>创意概念与旗舰活动</span></div>
+        <p><span data-en>For a flagship opening in a top-tier Beijing retail destination, our interactive concept was selected and rolled out alongside a high-alignment KOL collaboration — turning a store opening into a cultural moment.</span>
+           <span data-zh>为其在北京顶级商圈的旗舰店开幕，我们提出的互动概念成功被采纳并落地，搭配高契合度的KOL合作——把一次开店变成一场文化事件。</span></p>
+        <div class="metric"><div><b>Adopted</b><span data-en>Interactive concept</span><span data-zh>互动概念被采纳</span></div><div><b>KOL</b><span data-en>Aligned collaboration</span><span data-zh>高契合达人合作</span></div></div>
+      </div>
+
+      <!-- 4: International Technology (solar / market entry advisory) -->
+      <div class="case">
+        <div class="badges">
+          <span class="badge"><span data-en>Technology</span><span data-zh>科技</span></span>
+          <span class="badge"><span data-en>Market Entry</span><span data-zh>市场进入</span></span>
+        </div>
+        <h3><span data-en>International Technology Brand</span><span data-zh>国际科技品牌</span></h3>
+        <div class="sub"><span data-en>Market Entry Support &amp; Localization</span><span data-zh>市场进入支持与本地化</span></div>
+        <p><span data-en>For a company in the photovoltaic (solar) industry, we delivered a competitor analysis and professional recommendations to sharpen its market positioning — turning a complex competitive landscape into a clear, actionable point of view.</span>
+           <span data-zh>为一家光伏（太阳能）产业公司，我们交付了竞争者分析与专业建议，优化其市场定位——把复杂的竞争格局，转化为清晰、可落地的判断与方向。</span></p>
+        <div class="metric"><div><b>Audit</b><span data-en>Competitive landscape</span><span data-zh>竞争格局分析</span></div><div><b>Strategy</b><span data-en>Entry recommendations</span><span data-zh>进入策略建议</span></div></div>
+      </div>
+
+      <!-- 5: Consumer Electronics (vivo SE Asia) -->
+      <div class="case">
+        <div class="badges">
+          <span class="badge"><span data-en>Consumer Electronics</span><span data-zh>消费电子</span></span>
+          <span class="badge"><span data-en>China &rarr; Global</span><span data-zh>中国 &rarr; 全球</span></span>
+        </div>
+        <h3><span data-en>Consumer Electronics Brand</span><span data-zh>消费电子品牌</span></h3>
+        <div class="sub"><span data-en>Regional Marketing &amp; Community Growth</span><span data-zh>区域营销与社群增长</span></div>
+        <p><span data-en>Entering Southeast Asia, the brand needed a local voice fast. We built the localized social team 0-to-1 across four platforms, set standardized SOPs, and ran end-to-end production for major launches.</span>
+           <span data-zh>在进入东南亚市场时，品牌急需本地化声音。我们从0到1搭建本地社媒团队，覆盖四大平台，建立标准化SOP，并为重大发布提供全流程制作。</span></p>
+        <div class="metric"><div><b>0&rarr;1</b><span data-en>Local team built</span><span data-zh>本地团队搭建</span></div><div><b>4</b><span data-en>Platforms launched</span><span data-zh>平台同步上线</span></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker"><span data-en>Insights</span><span data-zh>洞察</span></div>
+      <h2 class="disp"><span data-en>How Brands Win in Markets That Don&rsquo;t Know Them Yet</span><span data-zh class="block">品牌如何赢得尚未熟知它的市场</span></h2>
+    </div>
+    <div class="ins-grid">
+      <div class="ins">
+        <div class="cat"><span data-en>Cross-Cultural</span><span data-zh>跨文化</span></div>
+        <h3><span data-en>Why good brands fail abroad — and how to fix it</span><span data-zh>为什么好品牌会在海外失败——以及如何破解</span></h3>
+        <p><span data-en>It's rarely the product. It's almost always being misunderstood. A look at the perception gap.</span>
+           <span data-zh>问题很少出在产品本身，几乎总是源于被误解。聊聊「认知差距」。</span></p>
+      </div>
+      <div class="ins">
+        <div class="cat"><span data-en>China Market</span><span data-zh>中国市场</span></div>
+        <h3><span data-en>Localization vs. translation: the difference that sells</span><span data-zh>本地化与翻译：决定销量的差别</span></h3>
+        <p><span data-en>Speaking the language isn't the same as speaking to the culture. Where most entries go wrong.</span>
+           <span data-zh>会说当地语言，不等于对得上当地文化。多数品牌进入市场时的误区。</span></p>
+      </div>
+      <div class="ins">
+        <div class="cat"><span data-en>Going Global</span><span data-zh>出海</span></div>
+        <h3><span data-en>Taking a Chinese brand global without losing its soul</span><span data-zh>中国品牌出海，如何不丢失灵魂</span></h3>
+        <p><span data-en>Global relevance and brand authenticity aren't a trade-off. How to keep both.</span>
+           <span data-zh>全球相关性与品牌本真并非取舍。如何二者兼得。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about">
+        <div class="kicker"><span data-en>About Us</span><span data-zh>关于我们</span></div>
+        <h2 class="disp" style="font-size:clamp(30px,4.5vw,46px);margin:14px 0 24px;">
+          <span data-en>We Translate Meaning, <span class="mag">Not Just Language</span></span>
+          <span data-zh class="block">我们传递的是<span class="mag">意义，而非语言</span></span>
+        </h2>
+        <p><span data-en>Too many strong brands fail abroad for the wrong reason — not product quality, but a failure to be understood. RAWZ.MEDIA exists to fix that.</span>
+           <span data-zh>太多优秀品牌在海外失败，原因却是错的——不是产品质量，而是没能被理解。RAWZ.MEDIA 正是为解决这一问题而生。</span></p>
+        <p><span data-en>We are a cross-cultural marketing agency working across luxury, automotive, technology, and lifestyle sectors. We help brands translate not just language, but meaning, context, and cultural intent across markets. We make brands understood, trusted, and relevant — wherever they grow.</span>
+           <span data-zh>我们是一家深耕奢侈品、汽车、科技与生活方式领域的跨文化营销机构。我们帮助品牌跨越市场——传递的不只是语言，更是意义、语境与文化意图。我们让品牌被理解、被信任、变得相关——无论它向何处生长。</span></p>
+        <p style="margin-bottom:0;"><span data-en>Our work spans brand positioning, cross-cultural strategy, and creative execution — turning cultural insight into communication that resonates and converts.</span>
+           <span data-zh>我们的工作横跨品牌定位、跨文化策略与创意执行——把文化洞察转化为真正能引发共鸣、推动转化的沟通。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="band">
+      <h2 class="disp" style="text-transform:none;"><span data-en>Ready to be understood in a new market?</span><span data-zh>准备好在新市场被真正理解了吗？</span></h2>
+      <p><span data-en>One call is enough to know if we're the right fit.</span>
+         <span data-zh>一次通话，就能判断我们是否合适。</span></p>
+      <a href="mailto:chloe@rawz.media" class="btn">chloe@rawz.media</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a href="#" class="logo">RAWZ<span class="dot">.</span></a>
+      <div class="muted">&copy; 2026 RAWZ.MEDIA — <span data-en>The bridge between China and the world.</span><span data-zh>连接中国与世界的桥梁。</span></div>
+      <div class="muted">chloe@rawz.media</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLang(l){
+  document.body.classList.toggle('zh', l==='zh');
+  document.documentElement.lang = l==='zh' ? 'zh-CN' : 'en';
+  document.getElementById('en-btn').classList.toggle('on', l==='en');
+  document.getElementById('zh-btn').classList.toggle('on', l==='zh');
+  try{ localStorage.setItem('rawz_lang', l); }catch(e){}
+}
+(function(){
+  var lang='en', stored=null;
+  try{ stored = localStorage.getItem('rawz_lang'); }catch(e){}
+  if(stored==='zh'||stored==='en'){
+    lang = stored;
+  }else if((navigator.language||'').toLowerCase().startsWith('zh')){
+    lang = 'zh';
+  }
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
