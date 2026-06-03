@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <!-- The Moon Gate -->
+  <rect width="240" height="240" rx="44" fill="#0A0A0C"/>
+  <!-- West arc — white (left half of the ring) -->
+  <path d="M120 50 A70 70 0 0 0 120 190" fill="none" stroke="#FFFFFF" stroke-width="14"/>
+  <!-- East arc — magenta (right half of the ring) -->
+  <path d="M120 50 A70 70 0 0 1 120 190" fill="none" stroke="#E9019B" stroke-width="14"/>
+  <!-- The point — single magenta dot, dead center -->
+  <circle cx="120" cy="120" r="9" fill="#E9019B"/>
+</svg>

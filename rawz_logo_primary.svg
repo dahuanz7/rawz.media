@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" width="600" height="240">
+  <rect width="600" height="240" fill="#0A0A0C"/>
+  <text x="300" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="300" font-size="86" letter-spacing="18" fill="#FFFFFF">RAWZ</text>
+  <circle cx="492" cy="118" r="11" fill="#E9019B"/>
+</svg>
