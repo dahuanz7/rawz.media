@@ -13,6 +13,7 @@
 :root{
   --ink:#0A0A0C; --surface:#15151B; --surface2:#1E1E26;
   --magenta:#E9019B; --magenta-deep:#B80179;
+  --magenta-glow:#FF2DB4; /* luminous tint of the brand magenta — glows & halos only */
   --white:#FFFFFF; --muted:#8B8B96; --hair:#2A2A33;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -47,12 +48,17 @@ nav{display:flex;align-items:center;justify-content:space-between;height:68px;}
 
 /* hero — full-bleed, integrated */
 .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px;}
-.hero-bg{position:absolute;inset:0;z-index:0;}
-.hero-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.55);}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.62);
+  transform:scale(1.06);animation:heroZoom 26s ease-in-out infinite alternate;}
+@keyframes heroZoom{from{transform:scale(1.06) translate(0,0);}to{transform:scale(1.14) translate(-1.5%,-1%);}}
+.hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(760px 520px at 78% 30%, rgba(255,45,180,.42), rgba(255,45,180,0) 62%);
+  animation:heroGlow 14s ease-in-out infinite alternate;}
+@keyframes heroGlow{from{transform:translate(0,0);opacity:.85;}to{transform:translate(-4%,3%);opacity:1;}}
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:
-   radial-gradient(1100px 700px at 78% 30%, rgba(233,1,155,.30), rgba(233,1,155,0) 60%),
-   linear-gradient(90deg, var(--ink) 32%, rgba(10,10,12,.78) 60%, rgba(10,10,12,.55) 100%),
+   linear-gradient(90deg, var(--ink) 30%, rgba(10,10,12,.74) 60%, rgba(10,10,12,.5) 100%),
    linear-gradient(0deg, var(--ink), rgba(10,10,12,0) 38%);}
 .hero .wrap{position:relative;z-index:1;width:100%;}
 .hero h1{font-size:clamp(44px,8.2vw,108px);max-width:15ch;}
@@ -97,7 +103,7 @@ body.zh .svc .num{font-family:'Inter',sans-serif;font-weight:700;}
 .ind img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   filter:grayscale(1) contrast(1.05) brightness(.62);transition:.4s;}
 .ind:hover img{filter:grayscale(.2) contrast(1.05) brightness(.72);transform:scale(1.05);}
-.ind::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(233,1,155,.10),rgba(10,10,12,.85));}
+.ind::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,45,180,.18),rgba(10,10,12,.82));}
 .ind .lab{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;}
 .ind .lab .n{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--magenta);}
 body.zh .ind .lab .n{font-family:'Inter',sans-serif;font-weight:700;}
@@ -106,17 +112,19 @@ body.zh .ind .lab .n{font-family:'Inter',sans-serif;font-weight:700;}
 /* cross-market map */
 #markets{border-top:1px solid var(--hair);background:linear-gradient(180deg,var(--ink),#0d0d12);}
 .map-wrap{position:relative;margin-top:34px;border:1px solid var(--hair);border-radius:20px;
-  background:radial-gradient(900px 420px at 60% 30%,rgba(233,1,155,.10),rgba(10,10,12,0) 60%),#101016;padding:24px;}
+  background:radial-gradient(900px 460px at 60% 35%,rgba(255,45,180,.16),rgba(10,10,12,0) 60%),#101016;padding:24px;}
 .map-wrap svg{width:100%;height:auto;display:block;}
+.land{fill:#1c1c24;stroke:#2c2c36;stroke-width:1;}
 .pin circle.dot{fill:var(--magenta);transition:.25s;}
-.pin circle.halo{fill:var(--magenta);opacity:.18;transition:.25s;}
-.pin text{fill:var(--muted);font-family:'Inter',sans-serif;font-size:15px;font-weight:500;transition:.25s;}
+.pin circle.halo{fill:var(--magenta-glow);opacity:.26;transition:.25s;animation:pinPulse 3.6s ease-in-out infinite;}
+.pin text{fill:#c7c7d0;font-family:'Inter',sans-serif;font-size:15px;font-weight:500;transition:.25s;}
 .pin{cursor:default;}
 .pin:hover circle.dot{r:8;}
-.pin:hover circle.halo{r:26;opacity:.32;}
+.pin:hover circle.halo{r:26;opacity:.42;}
 .pin:hover text{fill:#fff;}
-.route{fill:none;stroke:var(--magenta);stroke-width:1.2;stroke-dasharray:5 6;opacity:.5;}
-.route.faint{stroke:#3a3a44;stroke-dasharray:3 6;opacity:.7;}
+@keyframes pinPulse{0%,100%{opacity:.22;}50%{opacity:.4;}}
+.route{fill:none;stroke:var(--magenta);stroke-width:1.4;stroke-dasharray:5 6;opacity:.6;}
+.route.faint{stroke:#46464f;stroke-dasharray:3 6;opacity:.7;}
 .market-list{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:24px;}
 .market-list .m{border:1px solid var(--hair);border-radius:999px;padding:8px 16px;font-size:13.5px;}
 
@@ -152,11 +160,14 @@ body.zh .about .channels-h{font-family:'Inter',sans-serif;font-weight:700;}
 .chip{border:1px solid var(--hair);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--white);}
 
 /* cta band */
-.band{background:var(--magenta);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden;}
+.band{background:
+   radial-gradient(680px 360px at 50% 0%,rgba(255,45,180,.22),rgba(255,45,180,0) 70%),
+   var(--surface);
+  border:1px solid var(--magenta-deep);border-radius:24px;padding:64px;text-align:center;position:relative;overflow:hidden;}
 .band h2{font-size:clamp(28px,4vw,46px);color:#fff;}
-.band p{color:rgba(255,255,255,.88);margin:14px auto 28px;max-width:48ch;font-size:16px;}
-.band .btn{background:#fff;color:var(--magenta);}
-.band .btn:hover{background:var(--ink);color:#fff;}
+.band p{color:var(--muted);margin:14px auto 28px;max-width:48ch;font-size:16px;}
+.band .btn{background:var(--magenta);color:#fff;}
+.band .btn:hover{background:var(--magenta-deep);}
 
 footer{border-top:1px solid var(--hair);padding:50px 0 40px;}
 .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
@@ -203,9 +214,10 @@ body.zh [data-zh].block{display:block;}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80"
+    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80"
          alt="" onerror="this.style.display='none'">
   </div>
+  <div class="hero-glow"></div>
   <div class="wrap">
     <div class="kicker"><span data-en>Cross-Cultural Marketing</span><span data-zh>跨文化营销</span></div>
     <h1 class="disp" style="margin-top:22px;">
@@ -306,7 +318,7 @@ body.zh [data-zh].block{display:block;}
         <div class="lab"><div class="n">03</div><div class="t"><span data-en>Technology</span><span data-zh>科技</span></div></div>
       </div>
       <div class="ind">
-        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'">
         <div class="lab"><div class="n">04</div><div class="t"><span data-en>Lifestyle</span><span data-zh>生活方式</span></div></div>
       </div>
     </div>
@@ -324,32 +336,50 @@ body.zh [data-zh].block{display:block;}
     </div>
 
     <div class="map-wrap">
-      <svg viewBox="0 0 1000 420" role="img" aria-label="Markets map">
-        <!-- bridge arcs from Italy (west) to East Asia cluster -->
-        <path class="route" d="M150 175 C 380 60, 560 70, 690 150" />
-        <path class="route faint" d="M690 150 L 712 130" />
-        <path class="route faint" d="M690 150 L 700 215" />
-        <path class="route faint" d="M700 215 L 745 205" />
-        <path class="route faint" d="M700 215 L 735 305" />
+      <svg viewBox="0 0 1000 480" role="img" aria-label="Global markets world map">
+        <!-- Stylized world map — continent silhouettes -->
+        <g>
+          <!-- North America -->
+          <path class="land" d="M95 95 L210 80 L255 120 L235 165 L255 200 L210 235 L180 215 L165 250 L140 235 L150 190 L120 165 L135 130 Z"/>
+          <!-- South America -->
+          <path class="land" d="M250 280 L300 270 L320 310 L305 360 L280 430 L260 400 L255 345 L240 310 Z"/>
+          <!-- Europe -->
+          <path class="land" d="M470 120 L545 110 L560 145 L530 165 L545 195 L500 200 L478 175 L490 150 Z"/>
+          <!-- Africa -->
+          <path class="land" d="M480 210 L575 205 L595 255 L575 320 L535 385 L505 360 L500 300 L478 255 Z"/>
+          <!-- Asia -->
+          <path class="land" d="M560 105 L720 85 L820 110 L865 150 L835 195 L780 210 L720 195 L660 215 L610 195 L575 160 Z"/>
+          <!-- SE Asia / Indonesia -->
+          <path class="land" d="M760 270 L840 265 L860 295 L820 315 L775 305 Z"/>
+          <!-- Australia -->
+          <path class="land" d="M800 345 L895 340 L915 385 L865 410 L815 390 Z"/>
+        </g>
+
+        <!-- bridge route Italy (Europe) → East Asia -->
+        <path class="route" d="M520 175 C 620 95, 700 95, 760 185" />
+        <path class="route faint" d="M760 185 L 800 172" />
+        <path class="route faint" d="M760 185 L 770 225" />
+        <path class="route faint" d="M770 225 L 795 220" />
+        <path class="route faint" d="M770 225 L 800 290" />
 
         <!-- Italy -->
-        <g class="pin"><circle class="halo" cx="150" cy="175" r="16"/><circle class="dot" cx="150" cy="175" r="5.5"/>
-          <text x="150" y="205" text-anchor="middle"><tspan data-en>Italy</tspan><tspan data-zh>意大利</tspan></text></g>
+        <g class="pin"><circle class="halo" cx="520" cy="175" r="16"/><circle class="dot" cx="520" cy="175" r="5.5"/>
+          <text x="520" y="205" text-anchor="middle"><tspan data-en>Italy</tspan><tspan data-zh>意大利</tspan></text></g>
         <!-- Mainland China -->
-        <g class="pin"><circle class="halo" cx="690" cy="150" r="16"/><circle class="dot" cx="690" cy="150" r="5.5"/>
-          <text x="690" y="135" text-anchor="middle"><tspan data-en>Mainland China</tspan><tspan data-zh>中国大陆</tspan></text></g>
+        <g class="pin"><circle class="halo" cx="760" cy="185" r="16"/><circle class="dot" cx="760" cy="185" r="5.5"/>
+          <text x="760" y="160" text-anchor="middle"><tspan data-en>Mainland China</tspan><tspan data-zh>中国大陆</tspan></text></g>
         <!-- South Korea -->
-        <g class="pin"><circle class="halo" cx="712" cy="118" r="16"/><circle class="dot" cx="712" cy="118" r="5.5"/>
-          <text x="760" y="108" text-anchor="middle"><tspan data-en>South Korea</tspan><tspan data-zh>韩国</tspan></text></g>
+        <g class="pin"><circle class="halo" cx="800" cy="172" r="16"/><circle class="dot" cx="800" cy="172" r="5.5"/>
+          <text x="848" y="162" text-anchor="middle"><tspan data-en>South Korea</tspan><tspan data-zh>韩国</tspan></text></g>
         <!-- Taiwan -->
-        <g class="pin"><circle class="halo" cx="745" cy="205" r="16"/><circle class="dot" cx="745" cy="205" r="5.5"/>
-          <text x="788" y="209" text-anchor="middle"><tspan data-en>Taiwan</tspan><tspan data-zh>台湾</tspan></text></g>
+        <g class="pin"><circle class="halo" cx="795" cy="220" r="16"/><circle class="dot" cx="795" cy="220" r="5.5"/>
+          <text x="838" y="224" text-anchor="middle"><tspan data-en>Taiwan</tspan><tspan data-zh>台湾</tspan></text></g>
         <!-- Hong Kong -->
-        <g class="pin"><circle class="halo" cx="700" cy="215" r="16"/><circle class="dot" cx="700" cy="215" r="5.5"/>
-          <text x="648" y="235" text-anchor="middle"><tspan data-en>Hong Kong</tspan><tspan data-zh>香港</tspan></text></g>
+        <g class="pin"><circle class="halo" cx="770" cy="225" r="16"/><circle class="dot" cx="770" cy="225" r="5.5"/>
+          <text x="718" y="245" text-anchor="middle"><tspan data-en>Hong Kong</tspan><tspan data-zh>香港</tspan></text></g>
         <!-- Indonesia -->
-        <g class="pin"><circle class="halo" cx="735" cy="305" r="16"/><circle class="dot" cx="735" cy="305" r="5.5"/>
-          <text x="735" y="335" text-anchor="middle"><tspan data-en>Indonesia</tspan><tspan data-zh>印度尼西亚</tspan></text></g>
+        <g class="pin"><circle class="halo" cx="800" cy="290" r="16"/><circle class="dot" cx="800" cy="290" r="5.5"/>
+          <text x="800" y="320" text-anchor="middle"><tspan data-en>Indonesia</tspan><tspan data-zh>印度尼西亚</tspan></text></g>
       </svg>
     </div>
 
